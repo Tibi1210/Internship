@@ -48,11 +48,11 @@ LIMIT 3;
 
 --7.
 SELECT artists.Name AS 'Artist Name', albums.Title AS 'Album Name', tracks.Name AS 'Track'
-FROM artists
-WHERE artists.ArtistId=albums.ArtistId AND albums.AlbumId=tracks.AlbumId
-ORDER BY tracks.TrackId; 
+FROM artists,albums,tracks
+WHERE artists.ArtistId=albums.ArtistId AND albums.AlbumId=tracks.AlbumId AND artists.Name='Santana'
+ORDER BY tracks.TrackId
 
---8.
+--8. (TODO: left join self AS table2)
 SELECT EmployeeId AS 'Employee Id', FirstName AS 'Employee Name', Title AS 'Employee Title', ReportsTo AS 'Manager Id'
 FROM employees
 
@@ -76,7 +76,7 @@ BEGIN
     END;
 END;
 
---11.
+--11. (not possible in one single trigger in SQLite)
 CREATE TABLE tracks_audi_log (
     operation TEXT,
     datetime  TEXT,
