@@ -19,3 +19,4 @@ cd $workingdir
 echo $columns > test_$year.txt
 psql -c "$query" | tail -n +3 | head -n -2 >> test_$year.txt
 
+gzip test_$year.txt
