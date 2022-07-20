@@ -10,13 +10,11 @@ year=`head -n 7 config.cfg | tail -n 1 | awk '{print $1}'`
 columns=`head -n 7 config.cfg | tail -n 1 | awk '{print $2}'`
 order=`head -n 7 config.cfg | tail -n 1 | awk '{print $3}'`
 
-
-
+export PGPASSWORD=$passwd
 
 mkdir $workingdir
 cd $workingdir
 
-echo $columns > test_$year.txt
-psql -h $host -d $database -U $username -c "$query" | tail -n +3 | head -n -2 >> test_$year.txt
+psql -h $host -d $database -U $username -c "$query $columns FROM test WHERE year='$year' ORDER BY $order" --csv >> test_$year.txt
 
 gzip test_$year.txt
