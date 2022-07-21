@@ -1,3 +1,0 @@
-test_col,year
-alma,2022
-asd,2022

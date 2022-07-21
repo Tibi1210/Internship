@@ -15,6 +15,6 @@ export PGPASSWORD=$passwd
 mkdir $workingdir
 cd $workingdir
 
-psql -h $host -d $database -U $username -c "$query $columns FROM test WHERE year='$year' ORDER BY $order" --csv >> test_$year.txt
+psql -h $host -d $database -U $username -c "$query $columns FROM test WHERE year='$year' ORDER BY $order" --csv >> test_$year.csv
 
-gzip test_$year.txt
+gzip test_$year.csv
