@@ -14,35 +14,51 @@ def substr(strIn):
 
 # 2nd problem
 def pairGen(n):
-    def addPair(resList, groupStr, left, right):
-        if left == 0 and right == 0:
-            resList.append(groupStr)
-        if left > 0:
-            addPair(resList, groupStr+"(", left-1, right)
-        if right > 0 and left < right:
-            addPair(resList, groupStr+")", left, right-1)
+    if 1 <= n <= 8:
+        def addPair(resList, groupStr, left, right):
+            if left == 0 and right == 0:
+                resList.append(groupStr)
+            if left > 0:
+                addPair(resList, groupStr+"(", left-1, right)
+            if right > 0 and left < right:
+                addPair(resList, groupStr+")", left, right-1)
 
-    pairList = []
-    addPair(pairList, "", n, n)
-    return pairList
+        pairList = []
+        addPair(pairList, "", n, n)
+        return pairList
+    return "Number must be between [1-8]"
 
 
 # 3rd problem
+
+def isPalindrome(strIn, start, end):
+    while start < end:
+        if strIn[start] != strIn[end]:
+            return False
+        start += 1
+        end -= 1
+    return True
+
+def allPalPartitions(palindromeList, onePalList, start, n, strIn):
+    if start >= n:
+        palindromeList.append(onePalList.copy())
+        
+    for i in range(start, n):
+        if isPalindrome(strIn, start, i):
+            onePalList.append(strIn[start:i + 1])
+            allPalPartitions(palindromeList, onePalList, i + 1, n, strIn)
+            onePalList.pop()
+
 def palindromePart(strIn):
-    palindromeList = []
+    if 1 <= len(strIn) <= 16:
+        strIn = strIn.lower()
+        n = len(strIn)
+        palindromeList = []
+        onePalList = []
 
-    for i in range(len(strIn)):
-        for j in range(i, len(strIn)):
-            if i == 0:
-                if strIn[i:j+1] == strIn[j::-1]:
-                    if strIn[j::-1] not in palindromeList:
-                        palindromeList.append(strIn[j::-1])
-            else:
-                if strIn[i:j+1] == strIn[j:i-1:-1]:
-                    if strIn[j:i-1:-1] not in palindromeList:
-                        palindromeList.append(strIn[j:i-1:-1])
-    return palindromeList
-
+        allPalPartitions(palindromeList, onePalList, 0, n, strIn)
+        return palindromeList
+    return "String length must be between [1-16] characters"
 
 print(substr("pwwkew"))
 print(pairGen(3))
