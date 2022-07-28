@@ -1,3 +1,4 @@
+from soupsieve import select
 from sqlalchemy import create_engine
 import random
 import names
@@ -117,13 +118,6 @@ def generate_all(n):
     generate_training(n)
     generate_certification()
 
-##########SELECT##########
-def select_table(columns, table,where):
-    result_set = db.execute('SELECT '+columns+' FROM "'+table+'" WHERE ') 
-    for r in result_set:  
-        print(r)
-        print()
-
 ##########DELETE##########
 
 def delete_record(table, idColumn, id):
@@ -157,3 +151,15 @@ def activate(table, idColumn, id):
 def update_record(table,updColumn, newValue, where, oldValue):
     db.execute('UPDATE "'+table+'" SET "'+updColumn+'"='+"'"+newValue+"'"+' WHERE "'+where+'"='+str(oldValue))
 
+##########SELECT##########
+
+def select_table(columns, table, whereCol="", filter=""):
+    if whereCol=="":
+        result_set = db.execute('SELECT '+columns+' FROM "'+table+'"') 
+        for r in result_set:  
+            print(r)
+    else:
+        result_set = db.execute('SELECT '+columns+' FROM "'+table+'" WHERE "'+whereCol+'"='+str(filter)) 
+        for r in result_set:  
+            print(r)
+            print()
