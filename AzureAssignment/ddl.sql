@@ -5,7 +5,8 @@ CREATE TABLE "Users" (
     "Creation Date" date,
     "Username" varchar(255),
     "Password" varchar(255),
-    "Level" int
+    "Level" int,
+    "Active" boolean
 );
 
 CREATE TABLE "Courses" (
@@ -15,13 +16,15 @@ CREATE TABLE "Courses" (
     "Duration" int,
     "Creation Date" date,
     "Tags" varchar(255),
-    "Photo" varchar(255) 
+    "Photo" varchar(255),
+    "Active" boolean
 );
 
 CREATE TABLE "Platforms" (
     "Platform ID" int,
     "Platform Name" varchar(255),
-    "Hyperlink Path" varchar(255)
+    "Hyperlink Path" varchar(255),
+    "Active" boolean
 );
 
 CREATE TABLE "Reviews" (
@@ -29,13 +32,15 @@ CREATE TABLE "Reviews" (
     "Course ID" int,
     "Feedback" varchar(255), 
     "Like/Dislike" boolean,
-    "Ranking Score (out of 5)" int
+    "Ranking Score (out of 5)" int,
+    "Active" boolean
 );
 
 CREATE TABLE "Photos" (
     "Course ID" int,
     "Platform ID" int,
-    "Image Object" varchar(255)
+    "Image Object" varchar(255),
+    "Active" boolean
 );
 
 CREATE TABLE "Certifications" (
@@ -43,7 +48,8 @@ CREATE TABLE "Certifications" (
     "User ID" int,
     "Course ID" int,
     "Completion Duration" int,
-    "Completion Date" date
+    "Completion Date" date,
+    "Active" boolean
 );
 
 CREATE TABLE "Ongoing Trainings" (
@@ -54,5 +60,6 @@ CREATE TABLE "Ongoing Trainings" (
     "Completion Percentage" int,
     "Start Date" date,
     "Finish Date" date,
-    "Last Updated" date
+    "Last Updated" date,
+    "Active" boolean
 );
