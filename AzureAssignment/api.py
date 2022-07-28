@@ -1,5 +1,3 @@
-from platform import platform
-from tracemalloc import start
 from sqlalchemy import create_engine
 import random
 import names
