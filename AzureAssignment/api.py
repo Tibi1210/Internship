@@ -115,7 +115,7 @@ def generate_all(n):
     generate_review(n)
     generate_photo(n)
     generate_training(n)
-    generate_certification(n)
+    generate_certification()
 
 ##########SELECT##########
 def select_table(columns, table,where):
@@ -157,4 +157,3 @@ def activate(table, idColumn, id):
 def update_record(table,updColumn, newValue, where, oldValue):
     db.execute('UPDATE "'+table+'" SET "'+updColumn+'"='+"'"+newValue+"'"+' WHERE "'+where+'"='+str(oldValue))
 
-update_record("Courses","Duration","0","Course ID",7)
